@@ -1,0 +1,59 @@
+﻿@model IEnumerable<My_shoppping_site.Models.ADmin>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+        <p>
+            <a href="@Url.Action("Create","Admins")" class="btn btn-primary">Create</a>
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                   Admin Name
+                </th>
+                <th>
+                    Admin Password
+                </th>
+                <th>
+                    Admin Gender
+                </th>
+                <th>
+                    Admin Phone
+                </th>
+                <th>
+                   Admin Address
+                </th>
+                <th>Action</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                       @item.Admin_Name
+                    </td>
+                    <td>
+                        @item.Admin_Password
+                    </td>
+                    <td>
+                        @item.Admin_Gender
+                    </td>
+                    <td>
+                        @item.Admin_Phone
+                    </td>
+                    <td>
+                        @item.Admin_Address
+                    </td>
+                    <td>
+                        <a href="@Url.Action("EDit","Admins", new { id = item.Admin_id })" class="btn btn-primary glyphicon glyphicon-edit"></a>
+                       <a href="@Url.Action("Details","Admins", new { id = item.Admin_id })" class="btn btn-success glyphicon glyphicon-book"></a>
+                      <a href="@Url.Action("Delete","Admins", new { id = item.Admin_id })" class="btn btn-danger glyphicon glyphicon-remove"></a>
+
+                    </td>
+                </tr>
+            }
+
+        </table>
