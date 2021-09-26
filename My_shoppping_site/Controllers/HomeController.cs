@@ -16,8 +16,11 @@ namespace My_shoppping_site.Controllers
             return View();
         }
 
-        public ActionResult product()
+        public ActionResult product(int? id)
         {
+            if (id != null) {
+                TempData["catid"] = id;
+                }
             return View();
         }
         public ActionResult Login()

@@ -129,6 +129,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ADminsController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -407,6 +408,7 @@
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <None Include="Views\Home\index.cshtml" />
+    <None Include="Views\Cart\displaycart.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <None Include="Views\Home\product.cshtml" />
     <None Include="Views\Home\contact.cshtml" />
