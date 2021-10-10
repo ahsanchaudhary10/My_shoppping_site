@@ -7,9 +7,10 @@ using My_shoppping_site.Models;
 
 namespace My_shoppping_site.Controllers
 {
-
+    
     public class HomeController : Controller
     {
+        string a = "new commit push";
         Model1 db = new Model1();
         public ActionResult Index()
         {
