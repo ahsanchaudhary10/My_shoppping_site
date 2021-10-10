@@ -1,0 +1,110 @@
+﻿
+@{
+    Layout = "";
+    ViewBag.Title = "getlistview";
+}
+
+<h2>getlistview</h2>
+
+<table class="table" id="mytbl">
+    <thead>
+        <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>F Name</th>
+            <th>Age</th>
+        </tr>
+    </thead>
+    <tbody id="mydata">
+        <tr><td>1</td><td>Ali</td><td>Umer</td><td>18</td></tr>
+        <tr><td>2</td><td>Ali</td><td>Umer</td><td>19</td></tr>
+        <tr><td>3</td><td>Ali</td><td>Umer</td><td>20</td></tr>
+        <tr><td>4</td><td>Ali</td><td>Umer</td><td>21</td></tr>
+        <tr><td>5</td><td>Ali</td><td>Umer</td><td>21</td></tr>
+        <tr><td>6</td><td>Ali</td><td>Umer</td><td>28</td></tr>
+        <tr><td>7</td><td>Ali</td><td>Umer</td><td>23</td></tr>
+        <tr><td>8</td><td>Ali</td><td>Umer</td><td>23</td></tr>
+        <tr><td>9</td><td>Ali</td><td>Umer</td><td>15</td></tr>
+        <tr><td>10</td><td>Ali</td><td>Umer</td><td>17</td></tr>
+        <tr><td>11</td><td>Ali</td><td>Umer</td><td>18</td></tr>
+        <tr><td>12</td><td>Ali</td><td>Umer</td><td>19</td></tr>
+        <tr><td>13</td><td>Ali</td><td>Umer</td><td>20</td></tr>
+    </tbody>
+
+</table>
+<button onclick="myfunc()">Submit</button>
+<button onclick="myfunc2()">Submit</button>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+
+    function myfunc() {
+        var data = document.getElementById('mydata');
+        var tbarray = [];
+
+        for (var i = 0; i < data.rows.length; i++) {
+            tbarray.push(
+                {
+                    Roll_No: data.rows[i].cells[0].innerHTML,
+                    Name: data.rows[i].cells[1].innerHTML,
+                    F_NAme: data.rows[i].cells[2].innerHTML,
+                    Age: data.rows[i].cells[3].innerHTML,
+                });
+        }
+        var id = 2;
+        console.log(tbarray)
+
+        //var myarray = JSON.stringify(tbarray);
+        //var url = "/home/getlistfromview?stu=" + myarray;
+                      @*var json = JSON.stringify(tbarray);
+                location.href = '@Url.Action("getlistfromview", "Home")?json=' + json;*@
+
+       
+        ;
+
+
+        //var headers = [];
+        //$('#mytbl th').each(function (index, item) {
+        //    headers[index] = $(item).html();
+        //});
+        //$('#mytbl tr').has('td').each(function () {
+        //    var arrayItem = {};
+        //    $('td', $(this)).each(function (index, item) {
+        //        arrayItem[headers[index]] = $(item).html();
+        //    });
+        //    tbarray.push(arrayItem);
+
+        //});
+        //console.log(tbarray);
+        //alert("ok");
+    }
+    function myfunc2() {
+        var id = 2;
+$.ajax({
+    type: "GET",
+    
+    data: { id: id }, 
+             
+            url: "@Url.Action("checkid", "Home")",
+    success: function (response) {
+        var list = JSON.parse(response);
+        makeTableHTML(list);
+
+        console.log('response', list);
+            }
+        });
+    }
+    function makeTableHTML(myArray) {
+    var result = "<table border=1>";
+    for(var i=0; i<myArray.length; i++) {
+        result += "<tr>";
+        for(var j=0; j<myArray[i].length; j++){
+            result += "<td>"+myArray[i][j]+"</td>";
+        }
+        result += "</tr>";
+    }
+    result += "</table>";
+
+    return result;
+}
+</script>

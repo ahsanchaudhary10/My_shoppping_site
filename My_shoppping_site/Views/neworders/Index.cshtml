@@ -1,0 +1,42 @@
+﻿@using My_shoppping_site.Models
+@{
+    ViewBag.Title = "Index";
+    Model1 db = new Model1();
+}
+
+<h2>New Pending Orders</h2>
+
+<table class="table">
+    <tr>
+        <td>Order id</td>
+        <td>Order Name</td>
+        <td>Order Phone</td>
+        <td>Order Email</td>
+        <td>Order Address</td>
+        <td>Order Date</td>
+        <td>Payment Method</td>
+        <td>Order Status</td>
+        <td>Action</td>
+
+    </tr>
+    @foreach (var item in db.Orders.Where(x=>x.Order_Status=="Pending"))
+    {
+        <tr>
+            <td>@item.Order_id</td>
+            <td>@item.Person_Name</td>  
+            <td>@item.Person_Phone</td>
+            <td>@item.Person_Email</td>
+            <td>@item.Person_Address</td>
+            <td>@item.Order_Datetime</td>
+            <td>@item.Payment_Method</td>
+            <td>@item.Order_Status</td>
+            <td>
+                <a href="@Url.Action("updatestatus","neworders",new { id=item.Order_id})" class="btn btn-primary">Deliverd</a>
+
+            </td>
+        </tr>
+    }
+
+
+</table>
+

@@ -3,6 +3,7 @@
     Layout = "~/views/shared/_Layout.cshtml";
     List<Product> list= (List<Product>)Session["customercart"];
     int indexno = -1;
+    decimal total = 0;
 }
         <!-- Breadcrumb Start -->
         <div class="breadcrumb-wrap">
@@ -37,6 +38,7 @@
                                         @foreach (var item in list)
                                         {
                                             indexno++;
+                                            total += (item.Product_Price*item.quantity);
                                             <tr>
                                                 <td>
                                                     <div class="img">
@@ -46,13 +48,14 @@
                                                 </td>
                                                 <td>Rs:@item.Product_Price</td>
                                                 <td>
-                                                    <div class="qty">
-                                                        <button class="btn-minus"><i class="fa fa-minus"></i></button>
-                                                        <input type="text" value="1">
-                                                        <button class="btn-plus"><i class="fa fa-plus"></i></button>
+                                                    <div class="">
+                                                         
+                                                       <button onclick="location.href='@Url.Action("minuscart","cart",new { id=indexno})'" class=""><i class="fa fa-minus"></i></button>
+                                                       <input type="text" readonly value="@item.quantity" />
+                                                        <button onclick="location.href='@Url.Action("Pluscart","Cart",new {id=indexno })'" class="btn-plus"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </td>
-                                                <td>RS:@item.Product_Price</td>
+                                                <td>RS:@(item.Product_Price*item.quantity)</td>
                                                 <td><a href="@Url.Action("Removerfromcart","Cart",new { id=indexno})"><i class="fa fa-trash"></i></a></td>
                                             </tr>
                                         }
@@ -76,13 +79,13 @@
                                     <div class="cart-summary">
                                         <div class="cart-content">
                                             <h1>Cart Summary</h1>
-                                            <p>Sub Total<span>$99</span></p>
-                                            <p>Shipping Cost<span>$1</span></p>
-                                            <h2>Grand Total<span>$100</span></h2>
+                                            <p>Sub Total<span>Rs: @total</span></p>
+                                            <p>Shipping Cost<span>Rs: 200</span></p>
+                                            <h2>Grand Total<span>@(total+200)</span></h2>
                                         </div>
                                         <div class="cart-btn">
                                             <button>Update Cart</button>
-                                            <button>Checkout</button>
+                                            <button onclick="location.href='@Url.Action("checkout","cart")'">Checkout</button>
                                         </div>
                                     </div>
                                 </div>

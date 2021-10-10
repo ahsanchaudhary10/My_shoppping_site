@@ -15,8 +15,9 @@ namespace My_shoppping_site.Models
             Order_Detail = new HashSet<Order_Detail>();
         }
 
+        public int pid;
         [Key]
-        public int Product_id { get; set; }
+        public int Product_id { get;  set; }
 
         [Required]
         [StringLength(50)]
@@ -36,6 +37,8 @@ namespace My_shoppping_site.Models
         public string Product_Status { get; set; }
 
         public int Category_Fid { get; set; }
+        [NotMapped]
+        public int quantity { get; set; }
 
         [Column(TypeName = "numeric")]
         public decimal Product_Purchase_Price { get; set; }
